@@ -1,9 +1,9 @@
 import qrcode
 
-url = "http://localhost:5000/evidencia/1"
+url = "https://atividade-monitoramento.onrender.com/evidencia/1"
 
 img = qrcode.make(url)
 
-img.save("evidencia1.png")
+img.save("qrcode_evidencia_1.png")
 
-print("QR Code gerado!")
+print("QR Code gerado com sucesso!")

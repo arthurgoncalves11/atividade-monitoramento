@@ -42,6 +42,18 @@ def evidencia(id):
             required
         >
 
+        <input
+            type="hidden"
+            id="latitude"
+            name="latitude"
+        >
+
+        <input
+            type="hidden"
+            id="longitude"
+            name="longitude"
+        >
+
         <br><br>
 
         <button type="submit">
@@ -49,6 +61,30 @@ def evidencia(id):
         </button>
 
     </form>
+
+    <script>
+
+        navigator.geolocation.getCurrentPosition(
+
+            function(position) {{
+
+                document.getElementById("latitude").value =
+                    position.coords.latitude;
+
+                document.getElementById("longitude").value =
+                    position.coords.longitude;
+
+            }},
+
+            function(error) {{
+
+                console.log("Localização não permitida.");
+
+            }}
+
+        );
+
+    </script>
     """
 
 
@@ -56,6 +92,9 @@ def evidencia(id):
 def registrar(id):
 
     nome = request.form.get("nome")
+
+    latitude = request.form.get("latitude")
+    longitude = request.form.get("longitude")
 
     ip = request.headers.get(
         "X-Forwarded-For",
@@ -71,11 +110,30 @@ def registrar(id):
         f"Evidência: {id}|"
         f"Data: {data}|"
         f"IP: {ip}|"
+        f"Latitude: {latitude}|"
+        f"Longitude: {longitude}|"
         f"UserAgent: {user_agent}\n"
     )
 
     with open(ARQUIVO_LOG, "a", encoding="utf-8") as arquivo:
         arquivo.write(log)
+
+    if latitude and longitude:
+        link_mapa = (
+            f"https://www.google.com/maps?q={latitude},{longitude}"
+        )
+
+        mapa_html = f"""
+        <p>
+            <a href="{link_mapa}" target="_blank">
+                Ver localização no Google Maps
+            </a>
+        </p>
+        """
+    else:
+        mapa_html = """
+        <p>Localização não disponível.</p>
+        """
 
     return f"""
     <h1>Acesso registrado com sucesso!</h1>
@@ -84,6 +142,10 @@ def registrar(id):
     <p><strong>Evidência:</strong> {id}</p>
     <p><strong>Data/Hora:</strong> {data}</p>
     <p><strong>IP:</strong> {ip}</p>
+    <p><strong>Latitude:</strong> {latitude}</p>
+    <p><strong>Longitude:</strong> {longitude}</p>
+
+    {mapa_html}
 
     <br>
 
@@ -110,6 +172,9 @@ def acessos():
                 <th>Evidência</th>
                 <th>Data/Hora</th>
                 <th>IP</th>
+                <th>Latitude</th>
+                <th>Longitude</th>
+                <th>Mapa</th>
             </tr>
         """
 
@@ -121,6 +186,20 @@ def acessos():
             evidencia = partes[1].replace("Evidência: ", "")
             data = partes[2].replace("Data: ", "")
             ip = partes[3].replace("IP: ", "")
+            latitude = partes[4].replace("Latitude: ", "")
+            longitude = partes[5].replace("Longitude: ", "")
+
+            if latitude and longitude:
+                link_mapa = (
+                    f"https://www.google.com/maps?q={latitude},{longitude}"
+                )
+
+                mapa = (
+                    f'<a href="{link_mapa}" '
+                    f'target="_blank">Ver localização</a>'
+                )
+            else:
+                mapa = "Não disponível"
 
             html += f"""
             <tr>
@@ -128,6 +207,9 @@ def acessos():
                 <td>{evidencia}</td>
                 <td>{data}</td>
                 <td>{ip}</td>
+                <td>{latitude}</td>
+                <td>{longitude}</td>
+                <td>{mapa}</td>
             </tr>
             """
 
