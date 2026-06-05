@@ -4,3 +4,33 @@ Data/Hora: 2026-06-05 11:09:27.413382
 IP: 127.0.0.1
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36
 ------------------------
+
+Evidência: 1
+Data/Hora: 2026-06-05 11:30:12.843640
+IP: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36
+------------------------
+
+Evidência: 1
+Data/Hora: 2026-06-05 11:34:35.068056
+IP: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36
+------------------------
+
+Evidência: 1
+Data/Hora: 2026-06-05 11:34:44.414793
+IP: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36
+------------------------
+
+Evidência: 1
+Data/Hora: 2026-06-05 11:34:54.151162
+IP: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36
+------------------------
+
+Evidência: 1
+Data/Hora: 2026-06-05 11:35:02.102048
+IP: 127.0.0.1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36
+------------------------
