@@ -1,5 +1,6 @@
 from flask import Flask, request
 from datetime import datetime
+from zoneinfo import ZoneInfo
 
 app = Flask(__name__)
 
@@ -103,7 +104,9 @@ def registrar(id):
 
     user_agent = request.headers.get("User-Agent")
 
-    data = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+    data = datetime.now(
+        ZoneInfo("America/Sao_Paulo")
+    ).strftime("%d/%m/%Y %H:%M:%S")
 
     log = (
         f"Nome: {nome}|"
@@ -182,12 +185,22 @@ def acessos():
 
             partes = linha.strip().split("|")
 
-            nome = partes[0].replace("Nome: ", "")
-            evidencia = partes[1].replace("Evidência: ", "")
-            data = partes[2].replace("Data: ", "")
-            ip = partes[3].replace("IP: ", "")
-            latitude = partes[4].replace("Latitude: ", "")
-            longitude = partes[5].replace("Longitude: ", "")
+            nome = partes[0].replace("Nome: ", "") if len(partes) > 0 else ""
+            evidencia = partes[1].replace("Evidência: ", "") if len(partes) > 1 else ""
+            data = partes[2].replace("Data: ", "") if len(partes) > 2 else ""
+            ip = partes[3].replace("IP: ", "") if len(partes) > 3 else ""
+
+            latitude = (
+                partes[4].replace("Latitude: ", "")
+                if len(partes) > 4
+                else ""
+            )
+
+            longitude = (
+                partes[5].replace("Longitude: ", "")
+                if len(partes) > 5
+                else ""
+            )
 
             if latitude and longitude:
                 link_mapa = (
