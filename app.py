@@ -11,12 +11,12 @@ def evidencia(id):
     data = datetime.now()
 
     log = f"""
-Evidência: {id}
-Data/Hora: {data}
-IP: {ip}
-User-Agent: {user_agent}
-------------------------
-"""
+    Evidência: {id}
+    Data/Hora: {data}
+    IP: {ip}
+    User-Agent: {user_agent}
+    ------------------------
+    """
 
     print(log)
 
